@@ -1,7 +1,9 @@
 import re
 from functools import lru_cache
+from time import time
 
 if __name__ == "__main__":
+    start = time()
     with open("inputs/day4.txt", "r") as f:
         lines = f.readlines()
     ans1 = 0
@@ -23,6 +25,8 @@ if __name__ == "__main__":
         return 1 + sum([process(card + j) for j in range(1, counts_matches[card] + 1)])
 
     ans2 = sum(process(j) for j in range(1, len(lines) + 1))
+    m, s = divmod(time() - start, 60)
 
     print(f"    \u2022 first part: {ans1}")
     print(f"    \u2022 second part: {ans2}")
+    print(f"Done in {m:.0f}m{s:.3f}s")
