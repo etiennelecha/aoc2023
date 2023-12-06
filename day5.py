@@ -105,10 +105,10 @@ if __name__ == "__main__":
     for range_ in seeds_but_ranges:
         sorted_seeds = union(range_, sorted_seeds)
 
-    travelers = map(travel, seeds)
+    ans1 = min(map(travel, seeds))
     ans2 = travel_range(sorted_seeds)
     m, s = divmod(time() - start, 60)
 
-    print(f"    \u2022 first part: {min(map(travel, seeds))}")
+    print(f"    \u2022 first part: {ans1}")
     print(f"    \u2022 second part: {ans2}")
     print(f"Done in {m:.0f}m{s:.4f}s")
