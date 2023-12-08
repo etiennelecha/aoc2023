@@ -43,7 +43,7 @@ class Hand:
             if len(dict_) == 3:
                 self.type = 5 - jays - jjay
             else:
-                self.type = 4 if jjay else 6 
+                self.type = 6 - 2 * jjay
         else:
             self.type = 7 - jays
 
