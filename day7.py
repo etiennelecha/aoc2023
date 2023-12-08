@@ -1,7 +1,9 @@
 from collections import Counter
 from time import time
+from functools import reduce
 
 start = time()
+
 
 class Hand:
     CONV = {
@@ -28,8 +30,8 @@ class Hand:
         self.bid = int(bid)
         dict_ = Counter(self.hand)
         jays = dict_.get("n", 0)
-        jjay= int(jays > 0)
-        max_val =  max(dict_.values())
+        jjay = int(jays > 0)
+        max_val = max(dict_.values())
         if len(dict_) == 1:
             self.type = 1
         elif max_val == 4:
@@ -53,7 +55,6 @@ class Hand:
         return self.type > other.type
 
 
-
 if __name__ == "__main__":
     with open("inputs/day7.txt", "r") as f:
         lines = f.readlines()
@@ -61,12 +62,10 @@ if __name__ == "__main__":
         hands2 = [Hand(line, conv_dict=Hand.CONV2) for line in lines]
     hands1.sort()
     hands2.sort()
-    ans1 = 0
-    ans2 = 0
-    for (i, hand), (j, hhand) in zip(enumerate(hands1), enumerate(hands2)):
-        ans1 += (i + 1) * hand.bid
-        ans2 += (j + 1) * hhand.bid
-    
+    ans1, ans2 = sum(map(lambda t: (t[0] + 1) * t[1].bid, enumerate(hands1))), sum(
+        map(lambda t: (t[0] + 1) * t[1].bid, enumerate(hands2))
+    )
+
     m, s = divmod(time() - start, 60)
     print(f"    \u2022 first part: {ans1}")
     print(f"    \u2022 second part: {ans2}")
