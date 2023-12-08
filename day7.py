@@ -28,26 +28,24 @@ class Hand:
         self.bid = int(bid)
         dict_ = Counter(self.hand)
         jays = dict_.get("n", 0)
-        if 0 < jays < 5:
-            dict_ = {k: v for (k, v) in dict_.items() if k != "n"}
-            c = max(dict_, key=lambda k: dict_[k])
-            dict_[c] += jays
+        jjay= int(jays > 0)
+        max_val =  max(dict_.values())
         if len(dict_) == 1:
             self.type = 1
-        elif max(dict_.values()) == 4:
-            self.type = 2
-        elif max(dict_.values()) == 3:
+        elif max_val == 4:
+            self.type = max(2 - jays, 1)
+        elif max_val == 3:
             if len(dict_) == 2:
-                self.type = 3
+                self.type = max(3 - jays, 1)
             else:
-                self.type = 4
-        elif max(dict_.values()) == 2:
+                self.type = 2 if jjay else 4
+        elif max_val == 2:
             if len(dict_) == 3:
-                self.type = 5
+                self.type = 5 - jays - jjay
             else:
-                self.type = 6
+                self.type = 4 if jjay else 6 
         else:
-            self.type = 7
+            self.type = 7 - jays
 
     def __lt__(self, other):
         if self.type == other.type:
@@ -65,10 +63,9 @@ if __name__ == "__main__":
     hands2.sort()
     ans1 = 0
     ans2 = 0
-    for i, hand in enumerate(hands1):
+    for (i, hand), (j, hhand) in zip(enumerate(hands1), enumerate(hands2)):
         ans1 += (i + 1) * hand.bid
-    for i, hand in enumerate(hands2):
-        ans2 += (i + 1) * hand.bid
+        ans2 += (j + 1) * hhand.bid
     
     m, s = divmod(time() - start, 60)
     print(f"    \u2022 first part: {ans1}")
