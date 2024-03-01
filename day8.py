@@ -1,7 +1,7 @@
-from itertools import cycle
-from collections import defaultdict
-from math import sqrt
 import re
+from collections import defaultdict
+from itertools import cycle
+from math import sqrt
 from time import time
 
 if __name__ == "__main__":

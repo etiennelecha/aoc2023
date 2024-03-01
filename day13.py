@@ -30,29 +30,30 @@ def is_pseudo_reflection(start_idx, lines):
         diff = diff_count(lines[start_idx - di], lines[start_idx + 1 + di])
     return 0
 
-ans1 = 0
-ans2 = 0
-for block in blocks:
-    h_lines = block.split("\n")
-    m = len(h_lines)
-    v_lines = ["".join(line[i] for line in h_lines) for i in range(len(h_lines[0]))]
-    n = len(v_lines)
-    i = 0
-    j = 0
-    while i < m - 1:
-        ans2 += 100 * is_pseudo_reflection(i, h_lines)
-        if h_lines[i] == h_lines[i + 1]:
-            ans1 += 100 * is_reflection(i, h_lines)
-        i += 1
-    
-    while j < n - 1:
-        ans2 += is_pseudo_reflection(j, v_lines)
-        if v_lines[j] == v_lines[j + 1]:
-            ans1 += is_reflection(j, v_lines)
-        j += 1
+if __name__ == "__main__":
+    ans1 = 0
+    ans2 = 0
+    for block in blocks:
+        h_lines = block.split("\n")
+        m = len(h_lines)
+        v_lines = ["".join(line[i] for line in h_lines) for i in range(len(h_lines[0]))]
+        n = len(v_lines)
+        i = 0
+        j = 0
+        while i < m - 1:
+            ans2 += 100 * is_pseudo_reflection(i, h_lines)
+            if h_lines[i] == h_lines[i + 1]:
+                ans1 += 100 * is_reflection(i, h_lines)
+            i += 1
+        
+        while j < n - 1:
+            ans2 += is_pseudo_reflection(j, v_lines)
+            if v_lines[j] == v_lines[j + 1]:
+                ans1 += is_reflection(j, v_lines)
+            j += 1
 
-m, s = divmod(time() - start, 60)
-print(f"    \u2022 first part: {ans1}")
-print(f"    \u2022 second part: {ans2}")
-print(f"Done in {m:.0f}m{s:.4f}s")
+    m, s = divmod(time() - start, 60)
+    print(f"    \u2022 first part: {ans1}")
+    print(f"    \u2022 second part: {ans2}")
+    print(f"Done in {m:.0f}m{s:.4f}s")
                 

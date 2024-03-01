@@ -1,6 +1,6 @@
 from collections import Counter
-from time import time
 from functools import reduce
+from time import time
 
 start = time()
 

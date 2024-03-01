@@ -30,21 +30,21 @@ def arrangement_counter(springs: str, pattern: tuple) -> int:
     removable_m = W_REGEX.match(springs)
     if removable_m:
         return arrangement_counter(springs[len(removable_m.group()) :], pattern)
-    arrangements = 0
+    ans = 0
     # string start with ? or #
     if springs[0] == "?":
-        arrangements += arrangement_counter(springs[1:], pattern)
+        ans += arrangement_counter(springs[1:], pattern)
 
     curr_block = pattern[0]
     possible_fit_m = get_regex(curr_block).match(springs)
     if possible_fit_m:
         remaining_blocks = pattern[1:]
         # Assume all machines in this range are broken.
-        arrangements += arrangement_counter(
+        ans += arrangement_counter(
             springs[len(possible_fit_m.group()) :], remaining_blocks
         )
 
-    return arrangements
+    return ans
 
 
 ans1 = 0

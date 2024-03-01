@@ -1,7 +1,7 @@
 import re
-from time import time
 from functools import reduce
 from math import floor, sqrt
+from time import time
 
 if __name__ == "__main__":
     start = time()

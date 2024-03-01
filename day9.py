@@ -1,6 +1,6 @@
-from itertools import pairwise
-from functools import reduce
 import re
+from functools import reduce
+from itertools import pairwise
 from time import time
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
-from time import time
 from collections import deque
+from time import time
 
 if __name__ == "__main__":
 
