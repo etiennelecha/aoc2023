@@ -30,7 +30,6 @@ def process(q, state, nsteps):
                         n_low += 1
                     else:
                         n_high += 1
-            
 
     return n_high, n_low, state
 
@@ -83,7 +82,9 @@ if __name__ == "__main__":
         elif type_ == "&":
             state_zero[module] = {mod: False for mod in preds[module]}
     succ_dict = {
-        k: successors for k, (_, successors) in config.items() if k != "broadcaster" and k!="bq"
+        k: successors
+        for k, (_, successors) in config.items()
+        if k != "broadcaster" and k != "bq"
     }
     broadcaster_dict = {
         k: successors for k, (_, successors) in config.items() if k == "broadcaster"
@@ -99,6 +100,4 @@ if __name__ == "__main__":
 
     print(f"    \u2022 second part: {lcm(*cycles)}")
     m, s = divmod(time() - t_start, 60)
-    print(f"Done in {m:.0f}m{s:.4f}s")          
-
-   
+    print(f"Done in {m:.0f}m{s:.4f}s")

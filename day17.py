@@ -1,5 +1,4 @@
 from heapq import heappop, heappush
-from math import inf
 from time import time
 
 start = time()

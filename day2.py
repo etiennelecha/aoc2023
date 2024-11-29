@@ -1,5 +1,8 @@
 import re
 
+# true ans1: 2593
+# true ans2: 64699
+
 if __name__ == "__main__":
     with open("inputs/day2.txt", "r") as f:
         lines = f.readlines()

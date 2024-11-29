@@ -35,7 +35,20 @@ def compressed_dfs(i, j, d, visited):
         compressed_dfs(ii, jj, d + dd, visited.copy()) for dd, (ii, jj) in graph[(i, j)]
     )
 
+def backtracked_dfs(i, j, d, visited:set):
+    global longest
+    if (i, j) == F:
+        longest = max(longest, d)
+    else:
+        visited.add((i, j))
+        for dd, (ii, jj) in graph[(i, j)]:
+            if (ii, jj) not in visited:
+                backtracked_dfs(ii, jj, d + dd, visited)
+        visited.remove((i, j))
 
+
+
+longest = 0
 graph = defaultdict(set)
 
 
@@ -95,13 +108,13 @@ if __name__ == "__main__":
     S = 0, j0
     F = m - 1, j1
 
-    print(f"    \u2022 first part: {dfs(*S, 0, set())}")
+    #print(f"    \u2022 first part: {dfs(*S, 0, set())}")
     mn, s = divmod(time() - start, 60)
-    print(f"Done in {mn:.0f}m{s:.4f}s")
+    print(f"Done in {mn:.0f}m{s:.3f}s")
     start = time()
 
     compression()
-
-    print(f"    \u2022 second part: {compressed_dfs(*S, 0, set())}")
+    backtracked_dfs(*S, 0, set())
+    print(f"    \u2022 second part: {longest}")
     mn, s = divmod(time() - start, 60)
-    print(f"Done in {mn:.0f}m{s:.4f}s")
+    print(f"Done in {mn:.0f}m{s:.3f}s")

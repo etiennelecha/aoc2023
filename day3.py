@@ -1,5 +1,7 @@
 import re
 
+# part1: 521515
+# part2: 69527306
 if __name__ == "__main__":
     with open("inputs/day3.txt", "r") as f:
         big_table = list(map(list, f.readlines()))
